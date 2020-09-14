@@ -96,8 +96,68 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+
+#plan: 
+    #Rules: no stored variables, no memory
+    
+
+    #Functions at hand!: Compare_items --> compares the current item to positional item nearby
+    #move_right & move_left: all based on position index and current array length
+    #Can_move left or right, determines if movement in a direction is possible.
+
+    #Light on? ayyy lights on lists sorted
+
+            #Bubble sort or selection sort?
+            #Selection has less efficiency but easiest to implement, lets go
+
+    #Todo(selection):
+        #Check if you can move right in the first place
+        #Grab the first thing in the list!
+        #While able to move right: (while true:)
+            #--while able to move right, move right
+            #--compare items as you go. Swap if the compare_item function the overlords gave us returns 1
+            #Get to the end of the list robo dummy!
+            
+
+            #When there are no items to compare move LEFT!!
+            #Drop off that smol bad boy where you were and then move your start index over +1.
+            #Pick up and repeat
+
+
+
         # Fill this out
-        pass
+        if not self.can_move_right():
+            return
+
+        #Pick up first item in list
+        self.swap_item()
+
+        while True:
+            #Go to last item in list, swapping as needed until reaching smallest item
+            while self.can_move_right():
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.swap_item()
+            #Robot now has smallest item at end of list
+
+            #Go left to where latest iteration started
+            while self.compare_item() != None:
+                self.move_left()
+
+            #Drop the smallest item in place and move one item right/pick that up
+            self.swap_item()
+            if not self.can_move_right():
+                return
+            self.move_right()
+            self.swap_item()
+
+
+#Time completed test: 0.024s
+#Orig time completed with sprint on test: 0.037s
+
+#Time Complex: 0(n^2)
+#Space Comp: 0(1)
+#Selection sort performs 0(n^2) comparisons, but only 0(n) swaps!
 
 
 if __name__ == "__main__":
